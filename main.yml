@@ -6,3 +6,5 @@
       private: false
   roles:
     - { role: html, tags: [html] }
+    - { role: rails, tags: [rails] }
+    - { role: git, tags: [always] }

@@ -1,0 +1,23 @@
+- name: Create github directory
+  file:
+    path: "{{ dest }}/{{ appname }}/.github/workflows"
+    state: directory
+    mode: "0755"
+
+- name: Copy test and release github actions files to target directory
+  copy:
+    src: "{{ item }}"
+    dest: "{{ dest }}/{{ appname }}/.github/workflows"
+  with_items:
+    - github-actions/release.yml
+    - github-actions/test.yml
+
+- name: git add
+  command: git add .
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: git commit
+  command: 'git commit -m "feat: initialize repo"'
+  args:
+    chdir: "{{ dest }}/{{ appname }}"

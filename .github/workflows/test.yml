@@ -27,7 +27,22 @@ jobs:
           source ~/.pyvenv-ansible/bin/activate
           ansible-galaxy collection install -r requirements.yml
 
+      - name: make a gitconfig
+        run: |
+          echo -e "[user]
+            name = github-runner
+            email = githubrunner@google.ba
+          " > ~/.gitconfig
+
+      - name: is gitconfig there
+        run: cat ~/.gitconfig
+
       - name: makes html
         run: |
           source ~/.pyvenv-ansible/bin/activate
-          ansible-playbook main.yml -i hosts --tags "html" -e "curdir=$(pwd) appname=test_project"
+          ansible-playbook main.yml -i hosts --tags "html" -e "curdir=$(pwd) appname=html_test_project"
+
+      - name: makes rails
+        run: |
+          source ~/.pyvenv-ansible/bin/activate
+          ansible-playbook main.yml -i hosts --tags "html" -e "curdir=$(pwd) appname=rails_test_project"

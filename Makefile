@@ -14,3 +14,5 @@ ansible:
 	$(ANSIBLE_GALAXY) collection install -r requirements.yml
 html:
 	$(ANSIBLE_PLAYBOOK) main.yml -i hosts --tags "html" -e curdir=$(CURDIR)
+rails:
+	$(ANSIBLE_PLAYBOOK) main.yml -i hosts --tags "rails" -e curdir=$(CURDIR)
