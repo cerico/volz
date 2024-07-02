@@ -1,0 +1,29 @@
+- name: Check if dist directory exists in curdir
+  stat:
+    path: "{{ curdir }}/dist"
+  register: dist_directory
+
+- name: Set dest variable if dist exists
+  set_fact:
+    dest: "{{ curdir }}/dist"
+  when: dist_directory.stat.exists
+
+- name: Set dest variable fallback
+  set_fact:
+    dest: "{{ curdir }}"
+  when: not dist_directory.stat.exists
+
+- name: Create target directory
+  file:
+    path: "{{ dest }}/{{ appname }}/"
+    state: directory
+    mode: "0755"
+
+- name: Copy html files to target directory
+  copy:
+    src: "{{ item }}"
+    dest: "{{ dest }}/{{ appname }}"
+  with_items:
+    - html/index.html
+    - html/styles.css
+    - html/script.js

@@ -1,0 +1,8 @@
+- name: Scaffold Application
+  hosts: localhost
+  vars_prompt:
+    - name: appname
+      prompt: What should we call your new project?
+      private: false
+  roles:
+    - { role: html, tags: [html] }
