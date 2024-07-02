@@ -11,14 +11,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: npm install
-        run: npm install
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
 
-      - name: make test
-        run: make test
+      - name: Install dependencies
+        run: |
+          python3 -m venv ~/.pyvenv-ansible
+          source ~/.pyvenv-ansible/bin/activate
+          pip install ansible
 
-      - name: install ts
-        run: npm i -g typescript
+      - name: Install ansible requirements
+        run: |
+          source ~/.pyvenv-ansible/bin/activate
+          ansible-galaxy collection install -r requirements.yml
 
-      - name: run typescript
-        run: make typescript
+      - name: makes html
+        run: |
+          source ~/.pyvenv-ansible/bin/activate
+          ansible-playbook main.yml -i hosts --tags "html" -e "curdir=$(pwd) appname=test_project"
