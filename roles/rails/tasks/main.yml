@@ -1,0 +1,50 @@
+- name: Check if dist directory exists in curdir
+  stat:
+    path: "{{ curdir }}/dist"
+  register: dist_directory
+
+- name: Set dest variable if dist exists
+  set_fact:
+    dest: "{{ curdir }}/dist"
+  when: dist_directory.stat.exists
+
+- name: Set dest variable fallback
+  set_fact:
+    dest: "{{ curdir }}"
+  when: not dist_directory.stat.exists
+
+- name: Create rails project
+  command: rails new "{{ appname }}" --database=postgresql -j esbuild
+  args:
+    chdir: "{{ dest }}"
+
+- name: Run bundle install
+  command: bundle install
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: Run yarn install
+  command: yarn install
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: Create the database
+  command: rails db:create
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: Run database migrations
+  command: rails db:migrate
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: Create github directory
+  file:
+    path: "{{ dest }}/{{ appname }}/.github/workflows"
+    state: directory
+    mode: "0755"
+
+- name: Copy github dokku actions file to target directory
+  template:
+    src: github-actions/dokku.yml.j2
+    dest: "{{ dest }}/{{ appname }}/.github/workflows/dokku.yml"
