@@ -1,17 +1,11 @@
-## Description
+## Volz
 
 ## TLDR Instructions
 
-To run the application
+To setup the appplication
 
 ```
-make start
-```
-
-To install dependencies
-
-```
-make install
+make ansible
 ```
 
 For available commands
@@ -20,8 +14,15 @@ For available commands
 make tldr
 ```
 
+## Available Scaffolds
+
+```
+make html
+```
 
 ## Built With
 
+- Ansible
+- Make
 
 
