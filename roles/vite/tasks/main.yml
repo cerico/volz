@@ -1,0 +1,25 @@
+- name: Create vite/react project
+  command: npm create vite@latest "{{ appname }}" -- --template react-ts
+  args:
+    chdir: "{{ dest }}"
+
+- name: install
+  command: yarn
+  args:
+    chdir: "{{ dest }}"
+
+- name: Add yarn packages
+  command: yarn add {{ item }}
+  with_items:
+    - "react"
+    - "react-dom"
+    - "react-router-dom"
+    - "react-query"
+    - "react-hook-form"
+    - "@react-google-maps/api"
+    - "leaflet"
+    - "react-leaflet"
+    - "@stripe/stripe-js"
+    - "@stripe/react-stripe-js"
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
