@@ -1,3 +1,12 @@
+# [0.4.0](https://github.com/cerico/volz/compare/v0.3.0...v0.4.0) (2024-07-03)
+
+
+### Features
+
+* add react to rails target ([0f9afac](https://github.com/cerico/volz/commit/0f9afac797ba6280871b37c2aef5a431b6c9e9f4))
+
+
+
 # [0.3.0](https://github.com/cerico/volz/compare/v0.2.0...v0.3.0) (2024-07-02)
 
 
