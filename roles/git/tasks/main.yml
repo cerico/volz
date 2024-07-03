@@ -12,6 +12,11 @@
     - github-actions/release.yml
     - github-actions/test.yml
 
+- name: git init
+  command: git init
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
 - name: git add
   command: git add .
   args:

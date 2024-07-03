@@ -28,16 +28,6 @@
   args:
     chdir: "{{ dest }}/{{ appname }}"
 
-- name: Create the database
-  command: rails db:create
-  args:
-    chdir: "{{ dest }}/{{ appname }}"
-
-- name: Run database migrations
-  command: rails db:migrate
-  args:
-    chdir: "{{ dest }}/{{ appname }}"
-
 - name: Create github directory
   file:
     path: "{{ dest }}/{{ appname }}/.github/workflows"
@@ -48,3 +38,141 @@
   template:
     src: github-actions/dokku.yml.j2
     dest: "{{ dest }}/{{ appname }}/.github/workflows/dokku.yml"
+
+- name: Add yarn packages
+  command: yarn add {{ item }}
+  with_items:
+    - "react"
+    - "react-dom"
+    - "react-router-dom"
+    - "react-query"
+    - "react-hook-form"
+    - "@react-google-maps/api"
+    - "leaflet"
+    - "react-leaflet"
+    - "@stripe/stripe-js"
+    - "@stripe/react-stripe-js"
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: Add gems
+  command: bundle add {{ item }}
+  with_items:
+    - "devise"
+    - "devise-jwt"
+    - "rack-cors"
+    - "active_model_serializers"
+    - "kaminari"
+    - "pundit"
+    - "sidekiq"
+    - "dotenv-rails"
+    - "carrierwave"
+    - "stripe"
+    - "geocoder"
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: Add license field to package.json if not present
+  lineinfile:
+    path: "{{ dest }}/{{ appname }}/package.json"
+    insertafter: '  "private": true,'  # Adjust this line if necessary
+    line: '  "license": "MIT",'
+    state: present
+
+- name: Create the database
+  command: rails db:create
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: Ensure build script includes --loader:.js=jsx
+  lineinfile:
+    path: "{{ dest }}/{{ appname }}/package.json"
+    regexp: '"build": ".*"'
+    line: '    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets --loader:.js=jsx"'
+    backrefs: yes
+
+- name: stimulus controller
+  command: rails g stimulus react
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: fill out resulting stimulus controller
+  copy:
+    src:  rails/js/react_controller.js
+    dest: "{{ dest }}/{{ appname }}/app/javascript/controllers/react_controller.js"
+
+- name: Create Applications and counter directories
+  file:
+    path: "{{ dest }}/{{ appname }}/app/javascript/applications/Counter"
+    state: directory
+    mode: "0755"
+
+- name: Copy counter component
+  copy:
+    src:  rails/js/counter.tsx
+    dest: "{{ dest }}/{{ appname }}/app/javascript/applications/Counter/App.tsx"
+
+- name: create client controller
+  command: rails g controller client index show
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: Add react to html.erb pages
+  copy:
+    src: rails/react.html.erb
+    dest: "{{ dest }}/{{ appname }}/app/views/client/{{ item }}"
+  with_items:
+    - "index.html.erb"
+    - "show.html.erb"
+
+- name: tidy up the created routes for index
+  lineinfile:
+    path: "{{ dest }}/{{ appname }}/config/routes.rb"
+    regexp: "get 'client/index'"
+    line: "  get 'client', to: 'client#index'"
+
+- name: tidy up the created routes for show
+  lineinfile:
+    path:  "{{ dest }}/{{ appname }}/config/routes.rb"
+    regexp: "get 'client/show'"
+    line: "  get 'client/:show', to: 'client#show'"
+
+- name: active storage install
+  command: rails active_storage:install
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: Move Dockerfile
+  command: mv "{{ dest }}/{{ appname }}"/Dockerfile "{{ dest }}/{{ appname }}"/Dockerfile.orig
+
+- name: copy Makefile and Procfiles
+  copy:
+    src: "{{ item }}"
+    dest: "{{ dest }}/{{ appname }}"
+  with_items:
+    - rails/Procfile.dev
+    - rails/Procfile
+
+- name: Copy Makefile
+  template:
+    src: rails/Makefile.j2
+    dest: "{{ dest }}/{{ appname }}/Makefile"
+
+- name: Copy Error pages
+  copy:
+    src: "{{ item }}"
+    dest: "{{ dest }}/{{ appname }}/public"
+  with_items:
+    - rails/error-pages/404.html
+    - rails/error-pages/422.html
+    - rails/error-pages/500.html
+
+- name: Run database migrations
+  command: rails db:migrate
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: Seed the database
+  command: rails db:seed
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
