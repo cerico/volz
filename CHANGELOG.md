@@ -1,3 +1,12 @@
+# [0.5.0](https://github.com/cerico/volz/compare/v0.4.0...v0.5.0) (2024-07-03)
+
+
+### Features
+
+* add vite target ([2235e61](https://github.com/cerico/volz/commit/2235e619fdbb4084372b93cda138b31dd52de4ae))
+
+
+
 # [0.4.0](https://github.com/cerico/volz/compare/v0.3.0...v0.4.0) (2024-07-03)
 
 
