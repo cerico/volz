@@ -16,3 +16,5 @@ html:
 	$(ANSIBLE_PLAYBOOK) main.yml -i hosts --tags "html" -e curdir=$(CURDIR)
 rails:
 	$(ANSIBLE_PLAYBOOK) main.yml -i hosts --tags "rails" -e curdir=$(CURDIR)
+vite:
+	$(ANSIBLE_PLAYBOOK) main.yml -i hosts --tags "vite" -e curdir=$(CURDIR)

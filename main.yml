@@ -5,6 +5,8 @@
       prompt: What should we call your new project?
       private: false
   roles:
+    - { role: before, tags: [always] }
     - { role: html, tags: [html] }
     - { role: rails, tags: [rails] }
+    - { role: vite, tags: [vite] }
     - { role: git, tags: [always] }
