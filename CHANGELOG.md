@@ -1,3 +1,12 @@
+# [0.7.0](https://github.com/cerico/volz/compare/v0.6.0...v0.7.0) (2024-07-04)
+
+
+### Features
+
+* set up node target with docker ([3a72a87](https://github.com/cerico/volz/commit/3a72a870ea13dd690f86dcdd942f7a154512a8b8))
+
+
+
 # [0.6.0](https://github.com/cerico/volz/compare/v0.5.0...v0.6.0) (2024-07-04)
 
 
