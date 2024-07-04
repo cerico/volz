@@ -5,4 +5,6 @@ tldr:
 %:
 	@$(MAKE) tldr
 dev:
-	node app.js
+	docker-compose up --build
+dokku:
+	@echo "ssh dokku && doknode {{ appname }}"
