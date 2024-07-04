@@ -64,17 +64,24 @@ jobs:
       - name: Install PostgreSQL client
         run: sudo apt-get install -y postgresql-client
 
-      - name: Install Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.0'
-
-      - name: Install Rails
-        run: gem install rails
-
-      - name: makes rails
+      - name: makes node
         env:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_db
         run: |
           source ~/.pyvenv-ansible/bin/activate
-          ansible-playbook main.yml -i hosts --tags "rails" -e "curdir=$(pwd) appname=rails_test_project"
+          ansible-playbook main.yml -i hosts --tags "node" -e "curdir=$(pwd) appname=node_test_project"
+
+      # - name: Install Ruby
+      #   uses: ruby/setup-ruby@v1
+      #   with:
+      #     ruby-version: '3.0'
+
+      # - name: Install Rails
+      #   run: gem install rails
+
+      # - name: makes rails
+      #   env:
+      #     DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_db
+      #   run: |
+      #     source ~/.pyvenv-ansible/bin/activate
+      #     ansible-playbook main.yml -i hosts --tags "rails" -e "curdir=$(pwd) appname=rails_test_project"
