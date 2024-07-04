@@ -1,0 +1,73 @@
+- name: Create a virtual environment
+  command: python3 -m venv "{{ dest }}/venv"
+
+- name: Install packaging and psycopg2 modules
+  shell: |
+    source "{{ dest }}/venv/bin/activate" && pip install packaging psycopg2-binary
+  args:
+    executable: /bin/zsh
+
+- name: Ensure psycopg2 is installed
+  pip:
+    name: psycopg2-binary
+  environment:
+    PATH: "{{ dest }}/venv/bin:{{ ansible_env.PATH }}"
+
+- name: Create target directory
+  file:
+    path: "{{ dest }}/{{ appname }}/"
+    state: directory
+    mode: "0755"
+
+- name: Initialize application
+  command: npm init -y
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: Setup node
+  command: yarn add express sequelize pg pg-hstore dotenv
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: npx sequelize-cli init
+  command: npx sequelize-cli init
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: Copy config.json
+  template:
+    src: node/config.json.j2
+    dest: "{{ dest }}/{{ appname }}/config/config.json"
+
+- name: Create PostgreSQL user
+  postgresql_user:
+    name: "{{ appname }}"
+    password: "{{ appname }}"
+    state: present
+    login_user: postgres
+    role_attr_flags: CREATEDB
+
+- name: Create PostgreSQL database
+  postgresql_db:
+    name: "{{ appname }}"
+    owner: "{{ appname }}"
+    state: present
+    login_user: postgres
+
+- name: Run Sequelize database creation
+  command: npx sequelize-cli db:create
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+  environment:
+    PGUSER: "{{ appname }}"
+    PGPASSWORD: "{{ appname }}"
+
+- name: Copy app.js
+  copy:
+    src: node/app.js
+    dest: "{{ dest }}/{{ appname }}/app.js"
+
+- name: Copy Makefile
+  copy:
+    src: node/Makefile
+    dest: "{{ dest }}/{{ appname }}/Makefile"
