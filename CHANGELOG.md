@@ -1,3 +1,12 @@
+# [0.6.0](https://github.com/cerico/volz/compare/v0.5.0...v0.6.0) (2024-07-04)
+
+
+### Features
+
+* add node target ([1609ea9](https://github.com/cerico/volz/commit/1609ea933d47dce64c20e4e32eb33a4586e219b5))
+
+
+
 # [0.5.0](https://github.com/cerico/volz/compare/v0.4.0...v0.5.0) (2024-07-03)
 
 
