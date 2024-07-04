@@ -20,6 +20,7 @@ make tldr
 make html
 make rails
 make vite
+make node
 ```
 
 ## Instructions
@@ -47,6 +48,10 @@ Volz will create a Vite application with React
 ### HTML
 
 Volz will create a barebones index.html, styles,css and script.js
+
+### Node
+
+Volz will create a hello world app with postgres
 
 ### Git/GitHub
 

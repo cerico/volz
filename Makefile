@@ -18,3 +18,5 @@ rails:
 	$(ANSIBLE_PLAYBOOK) main.yml -i hosts --tags "rails" -e curdir=$(CURDIR)
 vite:
 	$(ANSIBLE_PLAYBOOK) main.yml -i hosts --tags "vite" -e curdir=$(CURDIR)
+node:
+	$(ANSIBLE_PLAYBOOK) main.yml -i hosts --tags "node" -e curdir=$(CURDIR)

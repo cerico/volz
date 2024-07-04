@@ -9,4 +9,5 @@
     - { role: html, tags: [html] }
     - { role: rails, tags: [rails] }
     - { role: vite, tags: [vite] }
+    - { role: node, tags: [node] }
     - { role: git, tags: [always] }
