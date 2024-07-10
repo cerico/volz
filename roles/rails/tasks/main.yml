@@ -24,7 +24,7 @@
     src: github-actions/dokku.yml.j2
     dest: "{{ dest }}/{{ appname }}/.github/workflows/dokku.yml"
 
-- name: Add yarn packages
+- name: Add yarn packages to dependencies
   command: yarn add {{ item }}
   with_items:
     - "react"
@@ -33,10 +33,25 @@
     - "react-query"
     - "react-hook-form"
     - "@react-google-maps/api"
+    - "formik"
+    - "yup"
     - "leaflet"
+    - "@nanostores/react"
     - "react-leaflet"
     - "@stripe/stripe-js"
     - "@stripe/react-stripe-js"
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: Add yarn packages to devDependencies
+  command: yarn add -D {{ item }}
+  with_items:
+    - "@testing-library/jest-dom"
+    - "@testing-library/react"
+    - "@testing-library/user-event"
+    - "@types/jest"
+    - "jsdom"
+    - "vitest"
   args:
     chdir: "{{ dest }}/{{ appname }}"
 

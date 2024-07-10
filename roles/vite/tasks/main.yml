@@ -1,5 +1,5 @@
 - name: Create vite/react project
-  command: npm create vite@latest "{{ appname }}" -- --template react-ts
+  command: npm create vite@latest "{{ appname }}" -- --template react-ts --types
   args:
     chdir: "{{ dest }}"
 
@@ -8,7 +8,7 @@
   args:
     chdir: "{{ dest }}"
 
-- name: Add yarn packages
+- name: Add yarn packages to dependencies
   command: yarn add {{ item }}
   with_items:
     - "react"
@@ -18,8 +18,53 @@
     - "react-hook-form"
     - "@react-google-maps/api"
     - "leaflet"
+    - "formik"
+    - "yup"
+    - "@nanostores/react"
     - "react-leaflet"
     - "@stripe/stripe-js"
     - "@stripe/react-stripe-js"
   args:
     chdir: "{{ dest }}/{{ appname }}"
+
+- name: Add yarn packages to devDependencies
+  command: yarn add -D {{ item }}
+  with_items:
+    - "@testing-library/dom"
+    - "@testing-library/jest-dom"
+    - "@testing-library/react"
+    - "@testing-library/user-event"
+    - "@types/jest"
+    - "jsdom"
+    - "vitest"
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: add vite.config.ts
+  copy:
+    src: vite/vite.config.ts
+    dest: "{{ dest }}/{{ appname }}"
+
+- name: Create tests directory
+  file:
+    path: "{{ dest }}/{{ appname }}/tests"
+    state: directory
+    mode: "0755"
+
+- name: add tests/setup.ts
+  copy:
+    src: "{{ item }}"
+    dest: "{{ dest }}/{{ appname }}/tests"
+  with_items:
+    - vite/tests/setup.ts
+    - vite/tests/App.test.tsx
+
+- name: Add test to package.json
+  command: npx json -I -f package.json -e 'this.scripts.test="vitest"'
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: Copy makefile
+  copy:
+    src: vite/Makefile
+    dest: "{{ dest }}/{{ appname }}/Makefile"
