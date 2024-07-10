@@ -85,11 +85,9 @@
     chdir: "{{ dest }}/{{ appname }}"
 
 - name: Ensure build script includes --loader:.js=jsx
-  lineinfile:
-    path: "{{ dest }}/{{ appname }}/package.json"
-    regexp: '"build": ".*"'
-    line: '    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets --loader:.js=jsx"'
-    backrefs: yes
+  command: npx json -I -f package.json -e 'this.scripts.build="esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets --loader:.js=jsx"'
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
 
 - name: stimulus controller
   command: rails g stimulus react
