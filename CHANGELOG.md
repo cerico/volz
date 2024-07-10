@@ -1,3 +1,12 @@
+# [0.8.0](https://github.com/cerico/volz/compare/v0.7.0...v0.8.0) (2024-07-10)
+
+
+### Features
+
+* update vite role with formik and [@testing-library](https://github.com/testing-library) ([ac32587](https://github.com/cerico/volz/commit/ac325878dbd03b9ffdad2a44dce696ffcbbe12a4))
+
+
+
 # [0.7.0](https://github.com/cerico/volz/compare/v0.6.0...v0.7.0) (2024-07-04)
 
 
