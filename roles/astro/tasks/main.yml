@@ -1,0 +1,22 @@
+
+- name: Create astro project
+  command: 	yarn create astro "{{ appname }}" --typescript strict --template minimal --git --install --skip-houston
+  args:
+    chdir: "{{ dest }}"
+
+- name: Create vite/react project
+  command: 	yarn astro add react -y
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: Add normalize css to index.html
+  lineinfile:
+    path:  "{{ dest }}/{{ appname }}/src/pages/index.astro"
+    line: '    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">'
+    insertbefore: '</head>'
+    state: present
+
+- name: add astro.config.ts
+  copy:
+    src: astro/astro.config.mjs
+    dest: "{{ dest }}/{{ appname }}"
