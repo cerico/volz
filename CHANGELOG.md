@@ -1,3 +1,12 @@
+## [0.8.1](https://github.com/cerico/volz/compare/v0.8.0...v0.8.1) (2024-07-12)
+
+
+### Bug Fixes
+
+* use npx json to modify build in package.json ([de3ddca](https://github.com/cerico/volz/commit/de3ddcaec0e025a780345f3e6f2ea370d6f0d38e))
+
+
+
 # [0.8.0](https://github.com/cerico/volz/compare/v0.7.0...v0.8.0) (2024-07-10)
 
 
