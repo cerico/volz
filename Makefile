@@ -20,3 +20,5 @@ vite:
 	$(ANSIBLE_PLAYBOOK) main.yml -i hosts --tags "vite" -e curdir=$(CURDIR)
 node:
 	$(ANSIBLE_PLAYBOOK) main.yml -i hosts --tags "node" -e curdir=$(CURDIR)
+astro:
+	$(ANSIBLE_PLAYBOOK) main.yml -i hosts --tags "astro" -e curdir=$(CURDIR)

@@ -10,4 +10,5 @@
     - { role: rails, tags: [rails] }
     - { role: vite, tags: [vite] }
     - { role: node, tags: [node] }
+    - { role: astro, tags: [astro] }
     - { role: git, tags: [always] }
