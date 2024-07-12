@@ -64,6 +64,13 @@
   args:
     chdir: "{{ dest }}/{{ appname }}"
 
+- name: Add normalize css to index.html
+  lineinfile:
+    path:  "{{ dest }}/{{ appname }}/index.html"
+    line: '    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">'
+    insertbefore: '</head>'
+    state: present
+
 - name: Copy makefile
   copy:
     src: vite/Makefile
