@@ -1,3 +1,14 @@
+# [0.9.0](https://github.com/cerico/volz/compare/v0.8.1...v0.9.0) (2024-07-13)
+
+
+### Features
+
+* add astro role ([6b86e7d](https://github.com/cerico/volz/commit/6b86e7d5273a5b7bae89372c3786b18f34ec318c))
+* add normalize css to html ([6ad34a9](https://github.com/cerico/volz/commit/6ad34a9bd39da260c7c7f440e49155127e9d2caa))
+* add normalize css to vite ([2cc4a60](https://github.com/cerico/volz/commit/2cc4a6044533597f146913648bae257369764053))
+
+
+
 ## [0.8.1](https://github.com/cerico/volz/compare/v0.8.0...v0.8.1) (2024-07-12)
 
 
