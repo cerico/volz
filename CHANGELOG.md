@@ -1,3 +1,13 @@
+# [0.10.0](https://github.com/cerico/volz/compare/v0.9.0...v0.10.0) (2024-07-13)
+
+
+### Features
+
+* add js utils file ([0955d47](https://github.com/cerico/volz/commit/0955d471d0492bd4aa50724195c54761051061ec))
+* add js utils file to rails, vite, astro ([509e9c5](https://github.com/cerico/volz/commit/509e9c53fd08f75be692e61911e6da861fa797dc))
+
+
+
 # [0.9.0](https://github.com/cerico/volz/compare/v0.8.1...v0.9.0) (2024-07-13)
 
 
