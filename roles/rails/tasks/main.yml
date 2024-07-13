@@ -52,6 +52,7 @@
     - "@types/jest"
     - "jsdom"
     - "vitest"
+    - "sass"
   args:
     chdir: "{{ dest }}/{{ appname }}"
 

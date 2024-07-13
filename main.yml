@@ -8,7 +8,8 @@
     - { role: before, tags: [always] }
     - { role: html, tags: [html] }
     - { role: rails, tags: [rails] }
-    - { role: vite, tags: [vite] }
+    - { role: vite, tags: [vite, formik] }
     - { role: node, tags: [node] }
     - { role: astro, tags: [astro] }
+    - { role: formik, tags: [formik] }
     - { role: git, tags: [always] }
