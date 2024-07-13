@@ -22,7 +22,7 @@ function FormPage() {
   return (
     <div className="form-container">
       <h2 style={{
-        color: theme === "coral" ? "pink" : "lightblue",
+        color: theme === "light" ? "coral" : "lightblue",
       }}>Formik Form</h2>
 
       <Formik
