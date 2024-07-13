@@ -1,0 +1,18 @@
+- name: Create components directory
+  file:
+    path: "{{ dest }}/{{ appname }}/src/components"
+    state: directory
+    mode: "0755"
+
+- name: Copy Form
+  copy:
+    src: "{{ item }}"
+    dest: "{{ dest }}/{{ appname }}/src/components"
+  with_items:
+    - "formik/FormPage.tsx"
+    - "formik/FormPage.scss"
+
+- name: Copy main App
+  copy:
+    src: "formik/App.tsx"
+    dest: "{{ dest }}/{{ appname }}/src/App.tsx"
