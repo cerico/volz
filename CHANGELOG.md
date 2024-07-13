@@ -1,3 +1,12 @@
+## [0.11.1](https://github.com/cerico/volz/compare/v0.11.0...v0.11.1) (2024-07-13)
+
+
+### Bug Fixes
+
+* correct issues with switch component ([3a1d7fd](https://github.com/cerico/volz/commit/3a1d7fdc66d8e0ea4c2510d51c21bca603f3929c))
+
+
+
 # [0.11.0](https://github.com/cerico/volz/compare/v0.10.0...v0.11.0) (2024-07-13)
 
 
