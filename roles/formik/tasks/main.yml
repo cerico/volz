@@ -11,8 +11,21 @@
   with_items:
     - "formik/FormPage.tsx"
     - "formik/FormPage.scss"
+    - "formik/Switch.tsx"
+    - "formik/Switch.scss"
 
 - name: Copy main App
   copy:
     src: "formik/App.tsx"
     dest: "{{ dest }}/{{ appname }}/src/App.tsx"
+
+- name: Create contexts directory
+  file:
+    path: "{{ dest }}/{{ appname }}/src/contexts"
+    state: directory
+    mode: "0755"
+
+- name: Copy main context
+  copy:
+    src: "formik/contexts/index.tsx"
+    dest: "{{ dest }}/{{ appname }}/src/contexts/index.tsx"
