@@ -115,6 +115,17 @@
   args:
     chdir: "{{ dest }}/{{ appname }}"
 
+- name: Create utils directory
+  file:
+    path: "{{ dest }}/{{ appname }}/app/javascript/utils"
+    state: directory
+    mode: "0755"
+
+- name: Copy utils file
+  copy:
+    src: js/utils.ts
+    dest: "{{ dest }}/{{ appname }}/app/javascript/utils/index.ts"
+
 - name: Add react to html.erb pages
   copy:
     src: rails/react.html.erb

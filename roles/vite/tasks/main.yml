@@ -75,3 +75,14 @@
   copy:
     src: vite/Makefile
     dest: "{{ dest }}/{{ appname }}/Makefile"
+
+- name: Create utils directory
+  file:
+    path: "{{ dest }}/{{ appname }}/src/utils"
+    state: directory
+    mode: "0755"
+
+- name: Copy utils file
+  copy:
+    src: js/utils.ts
+    dest: "{{ dest }}/{{ appname }}/src/utils/index.ts"
