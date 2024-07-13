@@ -1,5 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
+import { useTheme } from "../contexts"
 import './FormPage.scss'
 
 const initialValues = {
@@ -13,14 +14,17 @@ const validationSchema = Yup.object({
 })
 
 function FormPage() {
-
+  const { theme } = useTheme()
   const handleSubmit = (values: typeof initialValues) => {
     console.log('Form values:', values)
   }
 
   return (
     <div className="form-container">
-      <h2>Formik Form</h2>
+      <h2 style={{
+        color: theme === "coral" ? "pink" : "lightblue",
+      }}>Formik Form</h2>
+
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
