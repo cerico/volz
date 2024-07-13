@@ -78,11 +78,26 @@
 
 - name: Create utils directory
   file:
-    path: "{{ dest }}/{{ appname }}/src/utils"
+    path: "{{ dest }}/{{ appname }}/src/{{ item }}"
     state: directory
     mode: "0755"
+  with_items:
+    - services
+    - components
+    - constants
+    - utils
 
 - name: Copy utils file
   copy:
     src: js/utils.ts
     dest: "{{ dest }}/{{ appname }}/src/utils/index.ts"
+
+- name: Copy services file
+  copy:
+    src: js/services.ts
+    dest: "{{ dest }}/{{ appname }}/src/services/index.ts"
+
+- name: Copy constants file
+  copy:
+    src: js/constants.ts
+    dest: "{{ dest }}/{{ appname }}/src/constants/index.ts"
