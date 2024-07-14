@@ -1,3 +1,12 @@
+# [0.12.0](https://github.com/cerico/volz/compare/v0.11.1...v0.12.0) (2024-07-14)
+
+
+### Features
+
+* add services file and postcode lookup ([0e3e6a5](https://github.com/cerico/volz/commit/0e3e6a5edb3c5fa9520f5c88e46d929006f48afc))
+
+
+
 ## [0.11.1](https://github.com/cerico/volz/compare/v0.11.0...v0.11.1) (2024-07-13)
 
 
