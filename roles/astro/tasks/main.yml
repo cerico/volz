@@ -32,6 +32,7 @@
     - constants
     - utils
     - layouts
+    - hooks
 
 - name: Copy utils file
   copy:
