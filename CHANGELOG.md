@@ -1,3 +1,12 @@
+# [0.15.0](https://github.com/cerico/volz/compare/v0.14.0...v0.15.0) (2024-07-15)
+
+
+### Features
+
+* add navigation to astro role ([fb41dd8](https://github.com/cerico/volz/commit/fb41dd87cab42447292f0a188fd67d8c9d42134d))
+
+
+
 # [0.14.0](https://github.com/cerico/volz/compare/v0.13.0...v0.14.0) (2024-07-15)
 
 
