@@ -1,3 +1,14 @@
+# [0.14.0](https://github.com/cerico/volz/compare/v0.13.0...v0.14.0) (2024-07-15)
+
+
+### Features
+
+* add hocs and renderprops hooks to vite ([d481c10](https://github.com/cerico/volz/commit/d481c10c4a814fcb5ceb786b103c50f853f4f90a))
+* add react-router and hocs to formik role ([c1bfa29](https://github.com/cerico/volz/commit/c1bfa2984c03abd0bd967c0c9633153c22500466))
+* add react-router and hocs to formik role ([791f1eb](https://github.com/cerico/volz/commit/791f1eb4cf0be1aedd8c670d69a9ee01f0dd2d2f))
+
+
+
 # [0.13.0](https://github.com/cerico/volz/compare/v0.12.0...v0.13.0) (2024-07-15)
 
 
