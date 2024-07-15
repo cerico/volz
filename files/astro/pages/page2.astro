@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Welcome to Astro.">
+  <main>
+    <h1>Welcome to Page 2</h1>
+    <Footer prev="/" />
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 800px;
+    max-width: calc(100% - 2rem);
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
+</style>
