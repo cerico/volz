@@ -11,8 +11,9 @@
   with_items:
     - "formik/FormPage.tsx"
     - "formik/FormPage.scss"
-    - "formik/Switch.tsx"
-    - "formik/Switch.scss"
+    - "formik/SwitchTheme.tsx"
+    - "formik/SwitchTheme.scss"
+    - "formik/HocsPage.tsx"
 
 - name: Copy main App
   copy:
@@ -38,3 +39,9 @@
   with_items:
     - formik/hooks/hocs.tsx
     - formik/hooks/renderprops.tsx
+
+
+- name: Copy routes file
+  copy:
+    src: formik/routes/index.tsx
+    dest: "{{ dest }}/{{ appname }}/src/routes/index.tsx"

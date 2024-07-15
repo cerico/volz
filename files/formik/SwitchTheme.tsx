@@ -1,7 +1,7 @@
-import "./Switch.scss"
+import "./SwitchTheme.scss"
 import { useTheme } from "../contexts"
 
-const Switch = () => {
+const SwitchTheme = () => {
   const { theme, setTheme } = useTheme()
   return (
     <label className="switch">
@@ -15,4 +15,4 @@ const Switch = () => {
   )
 }
 
-export default Switch
+export default SwitchTheme
