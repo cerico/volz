@@ -6,7 +6,7 @@
 - name: install
   command: yarn
   args:
-    chdir: "{{ dest }}"
+    chdir: "{{ dest }}/{{ appname }}"
 
 - name: Add yarn packages to dependencies
   command: yarn add {{ item }}
