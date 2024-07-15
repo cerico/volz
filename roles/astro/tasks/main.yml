@@ -31,6 +31,7 @@
     - components
     - constants
     - utils
+    - layouts
 
 - name: Copy utils file
   copy:
@@ -46,3 +47,14 @@
   copy:
     src: js/constants.ts
     dest: "{{ dest }}/{{ appname }}/src/constants/index.ts"
+
+- name: Copy layouts file
+  copy:
+    src: astro/layout.astro
+    dest: "{{ dest }}/{{ appname }}/src/layouts/Layout.astro"
+
+
+- name: Copy index page file
+  copy:
+    src: astro/page.astro
+    dest: "{{ dest }}/{{ appname }}/src/pages/index.astro"
