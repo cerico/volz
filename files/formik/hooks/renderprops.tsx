@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 
-// Mouse Position Tracker
 type MousePositionProps = {
   render: (props: { mousePosition: { x: number, y: number } }) => JSX.Element
 }
@@ -23,7 +22,6 @@ const MousePosition = ({ render }: MousePositionProps) => {
   return render({ mousePosition })
 }
 
-// Window Dimensions Tracker
 type WindowDimensionsProps = {
   render: (props: { dimensions: { width: number, height: number } }) => JSX.Element
 }
@@ -46,7 +44,6 @@ const WindowDimensions = ({ render }: WindowDimensionsProps) => {
   return render({ dimensions })
 }
 
-// Data Fetcher
 type DataFetcherProps = {
   url: string
   render: (props: { data: any; error: any }) => JSX.Element
@@ -73,7 +70,6 @@ const DataFetcher = ({ url, render }: DataFetcherProps) => {
   return render({ data, error })
 }
 
-// Local Storage Manager
 type LocalStorageManagerProps = {
   key: string
   render: (props: { value: string | null, setValue: (value: string) => void }) => JSX.Element
@@ -90,7 +86,6 @@ const LocalStorageManager = ({ key, render }: LocalStorageManagerProps) => {
   return render({ value, setValue: setLocalStorageValue })
 }
 
-// Online Status Tracker
 type OnlineStatusProps = {
   render: (props: { isOnline: boolean }) => JSX.Element
 }
@@ -114,7 +109,6 @@ const OnlineStatus = ({ render }: OnlineStatusProps) => {
   return render({ isOnline })
 }
 
-// Geolocation Tracker
 type GeolocationProps = {
   render: (props: { position: { latitude: number, longitude: number } | null, error: any }) => JSX.Element
 }
@@ -133,7 +127,6 @@ const Geolocation = ({ render }: GeolocationProps) => {
   return render({ position, error })
 }
 
-// Authentication Checker
 type AuthCheckerProps = {
   render: (props: { isAuthenticated: boolean }) => JSX.Element
 }
@@ -149,7 +142,6 @@ const AuthChecker = ({ render }: AuthCheckerProps) => {
   return render({ isAuthenticated })
 }
 
-// Countdown Timer
 type CountdownProps = {
   initialCount: number
   render: (props: { count: number, reset: () => void }) => JSX.Element
@@ -168,7 +160,6 @@ const Countdown = ({ initialCount, render }: CountdownProps) => {
   return render({ count, reset })
 }
 
-// Form State Manager
 type FormStateManagerProps = {
   initialFormState: { [key: string]: string }
   render: (props: { formState: { [key: string]: string }, handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void }) => JSX.Element
@@ -184,7 +175,6 @@ const FormStateManager = ({ initialFormState, render }: FormStateManagerProps) =
   return render({ formState, handleChange })
 }
 
-// Network Request
 type NetworkRequestProps = {
   render: (props: { response: string | null; error: any; loading: boolean }) => JSX.Element
 }

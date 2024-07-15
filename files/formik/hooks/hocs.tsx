@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 
-//  withMousePosition
 const withMousePosition = (Component: any) => {
   return (props: any) => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -54,7 +53,6 @@ const WindowDimensionsComponent = ({ dimensions }: { dimensions: { width: number
 
 const EnhancedWindowDimensionsComponent = withWindowDimensions(WindowDimensionsComponent)
 
-//  withDataFetcher
 const withDataFetcher = (url: string) => (Component: any) => {
   return (props: any) => {
     const [data, setData] = useState(null)
@@ -108,7 +106,6 @@ const LocalStorageComponent = ({ value, setValue }: { value: string | null, setV
 
 const EnhancedLocalStorageComponent = withLocalStorage("username")(LocalStorageComponent)
 
-//  withOnlineStatus
 const withOnlineStatus = (Component: any) => {
   return (props: any) => {
     const [isOnline, setIsOnline] = useState(navigator.onLine)
@@ -136,7 +133,6 @@ const OnlineStatusComponent = ({ isOnline }: { isOnline: boolean }) => (
 
 const EnhancedOnlineStatusComponent = withOnlineStatus(OnlineStatusComponent)
 
-//  withGeolocation
 const withGeolocation = (Component: any) => {
   return (props: any) => {
     const [position, setPosition] = useState<{ latitude: number, longitude: number } | null>(null)
@@ -159,7 +155,6 @@ const GeolocationComponent = ({ position, error }: { position: { latitude: numbe
 
 const EnhancedGeolocationComponent = withGeolocation(GeolocationComponent)
 
-//  withAuthentication
 const withAuthentication = (Component: any) => {
   return (props: any) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -179,7 +174,6 @@ const AuthenticationComponent = ({ isAuthenticated }: { isAuthenticated: boolean
 
 const EnhancedAuthenticationComponent = withAuthentication(AuthenticationComponent)
 
-//  withCountdown
 const withCountdown = (initialCount: number) => (Component: any) => {
   return (props: any) => {
     const [count, setCount] = useState(initialCount)
@@ -204,7 +198,6 @@ const CountdownComponent = ({ count, reset }: { count: number, reset: () => void
 
 const EnhancedCountdownComponent = withCountdown(10)(CountdownComponent)
 
-//  withFormState
 const withFormState = (initialFormState: { [key: string]: string }) => (Component: any) => {
   return (props: any) => {
     const [formState, setFormState] = useState(initialFormState)
@@ -226,7 +219,6 @@ const FormStateComponent = ({ formState, handleChange }: { formState: { [key: st
 
 const EnhancedFormStateComponent = withFormState({ username: "" })(FormStateComponent)
 
-// : withNetworkRequest
 const withNetworkRequest = (url: string) => (Component: any) => {
   return (props: any) => {
     const [response, setResponse] = useState<string | null>(null)
