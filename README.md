@@ -21,6 +21,8 @@ make html
 make rails
 make vite
 make node
+make astro
+make formik
 ```
 
 ## Instructions
@@ -29,7 +31,7 @@ Volz is an application scaffolder that scaffolds rails/react applications, vite/
 
 ```bash
 volz () {
-  local volzloc=$HOMElive/volz
+  local volzloc=$HOME/live/volz
   make -f $volzloc/Makefile $1 -C $volzloc CURDIR=$(pwd)
   cd $(ls -t |head -1)
 }
