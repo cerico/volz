@@ -1,0 +1,51 @@
+---
+const { prev, next } = Astro.props;
+---
+
+<footer>
+  <nav>
+    <ul>
+      {
+        prev && (
+          <li>
+            <a href={prev}>Prev</a>
+          </li>
+        )
+      }
+      {
+        next && (
+          <li>
+            <a href={next}>Next</a>
+          </li>
+        )
+      }
+    </ul>
+  </nav>
+</footer>
+
+<style>
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+  }
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+  nav ul li {
+    margin: 0 1rem;
+  }
+  nav ul li a {
+    text-decoration: none;
+    color: white;
+  }
+  nav ul li a:hover {
+    text-decoration: underline;
+  }
+</style>

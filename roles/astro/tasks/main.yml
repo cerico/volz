@@ -33,6 +33,7 @@
     - utils
     - layouts
     - hooks
+    - pages
 
 - name: Copy utils file
   copy:
@@ -54,8 +55,15 @@
     src: astro/layout.astro
     dest: "{{ dest }}/{{ appname }}/src/layouts/Layout.astro"
 
-
-- name: Copy index page file
+- name: Copy pages
   copy:
-    src: astro/page.astro
-    dest: "{{ dest }}/{{ appname }}/src/pages/index.astro"
+    src: "{{ item }}"
+    dest: "{{ dest }}/{{ appname }}/src/pages"
+  with_items:
+    - "astro/pages/index.astro"
+    - "astro/pages/page2.astro"
+
+- name: Copy footer component
+  copy:
+    src: astro/components/Footer.astro
+    dest: "{{ dest }}/{{ appname }}/src/components/Footer.astro"
