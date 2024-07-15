@@ -1,3 +1,17 @@
+# [0.13.0](https://github.com/cerico/volz/compare/v0.12.0...v0.13.0) (2024-07-15)
+
+
+### Bug Fixes
+
+* run install in correct dir for vite ([dd71323](https://github.com/cerico/volz/commit/dd7132367ca004676fc6be3c94b01b7a643721b3))
+
+
+### Features
+
+* add layout for astro ([26ce545](https://github.com/cerico/volz/commit/26ce545e71d57ffb7f6a990fe6f9a3b047b67a3c))
+
+
+
 # [0.12.0](https://github.com/cerico/volz/compare/v0.11.1...v0.12.0) (2024-07-14)
 
 
