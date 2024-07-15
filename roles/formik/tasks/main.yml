@@ -29,3 +29,12 @@
   copy:
     src: "formik/contexts/index.tsx"
     dest: "{{ dest }}/{{ appname }}/src/contexts/index.tsx"
+
+
+- name: copy hooks examples
+  copy:
+    src: "{{ item }}"
+    dest: "{{ dest }}/{{ appname }}/src/hooks"
+  with_items:
+    - formik/hooks/hocs.tsx
+    - formik/hooks/renderprops.tsx

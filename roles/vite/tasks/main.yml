@@ -87,6 +87,7 @@
     - components
     - constants
     - utils
+    - hooks
 
 - name: Copy utils file
   copy:
