@@ -1,3 +1,12 @@
+# [0.16.0](https://github.com/cerico/volz/compare/v0.15.0...v0.16.0) (2024-07-17)
+
+
+### Features
+
+* add redux to vite role ([4ae53c5](https://github.com/cerico/volz/commit/4ae53c5ded26b5ad162e941b9706df926d41d6ee))
+
+
+
 # [0.15.0](https://github.com/cerico/volz/compare/v0.14.0...v0.15.0) (2024-07-15)
 
 
