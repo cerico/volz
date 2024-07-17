@@ -9,16 +9,20 @@
     src: "{{ item }}"
     dest: "{{ dest }}/{{ appname }}/src/components"
   with_items:
-    - "formik/FormPage.tsx"
-    - "formik/FormPage.scss"
-    - "formik/SwitchTheme.tsx"
-    - "formik/SwitchTheme.scss"
-    - "formik/HocsPage.tsx"
+    - "formik/components/FormPage.tsx"
+    - "formik/components/FormPage.scss"
+    - "formik/components/SwitchTheme.tsx"
+    - "formik/components/SwitchTheme.scss"
+    - "formik/components/HocsPage.tsx"
+    - "formik/components/CartPage.tsx"
 
-- name: Copy main App
+- name: Copy main and App
   copy:
-    src: "formik/App.tsx"
-    dest: "{{ dest }}/{{ appname }}/src/App.tsx"
+    src: "{{ item }}"
+    dest: "{{ dest }}/{{ appname }}/src"
+  with_items:
+    - "formik/main.tsx"
+    - "formik/App.tsx"
 
 - name: Create contexts directory
   file:
@@ -40,8 +44,19 @@
     - formik/hooks/hocs.tsx
     - formik/hooks/renderprops.tsx
 
-
 - name: Copy routes file
   copy:
     src: formik/routes/index.tsx
     dest: "{{ dest }}/{{ appname }}/src/routes/index.tsx"
+
+- name: copy redux store
+  copy:
+    src: formik/redux/store.ts
+    dest: "{{ dest }}/{{ appname }}/src/redux/store.ts"
+
+- name: copy redux slices
+  copy:
+    src: "{{ item }}"
+    dest: "{{ dest }}/{{ appname }}/src/redux/slices"
+  with_items:
+    - formik/redux/slices/cart.ts

@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import { Route, Routes, Link } from 'react-router-dom'
+import { Provider as ReduxProvider } from 'react-redux'
 import { checkPostcode } from "../services"
 import FormPage from '../components/FormPage'
 import Hocs from '../components/HocsPage'
+import CartPage from '../components/CartPage'
+import store from '../redux/store'
 
 function NavBar() {
   return (
@@ -16,6 +19,9 @@ function NavBar() {
         </li>
         <li>
           <Link to="/hocs">Hocs</Link>
+        </li>
+        <li>
+          <Link to="/cart">Cart</Link>
         </li>
       </ul>
     </nav>
@@ -51,6 +57,11 @@ function AppRoutes() {
         <Route path="/" Component={FormPage} />
         <Route path="/postcode" Component={PostCode} />
         <Route path="/hocs" Component={Hocs} />
+        <Route path="/cart" element={
+          <ReduxProvider store={store}>
+            <CartPage />
+          </ReduxProvider>
+        } />
       </Routes>
     </>
   )
