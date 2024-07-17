@@ -24,6 +24,8 @@
     - "react-leaflet"
     - "@stripe/stripe-js"
     - "@stripe/react-stripe-js"
+    - "react-redux"
+    - "@reduxjs/toolkit"
   args:
     chdir: "{{ dest }}/{{ appname }}"
 
@@ -77,7 +79,7 @@
     src: vite/Makefile
     dest: "{{ dest }}/{{ appname }}/Makefile"
 
-- name: Create utils directory
+- name: Create src directories
   file:
     path: "{{ dest }}/{{ appname }}/src/{{ item }}"
     state: directory
@@ -89,6 +91,8 @@
     - utils
     - hooks
     - routes
+    - redux
+    - redux/slices
 
 - name: Copy utils file
   copy:
