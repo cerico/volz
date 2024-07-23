@@ -1,3 +1,12 @@
+# [0.17.0](https://github.com/cerico/volz/compare/v0.16.0...v0.17.0) (2024-07-23)
+
+
+### Features
+
+* update formik and railsreact roles ([369fc8d](https://github.com/cerico/volz/commit/369fc8d51f2240798b8cf64ee441abc3efd235c9))
+
+
+
 # [0.16.0](https://github.com/cerico/volz/compare/v0.15.0...v0.16.0) (2024-07-17)
 
 
