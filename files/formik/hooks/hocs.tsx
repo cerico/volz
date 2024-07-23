@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 
 const withMousePosition = (Component: any) => {
   return (props: any) => {
@@ -231,7 +231,7 @@ const withNetworkRequest = (url: string) => (Component: any) => {
         try {
           const res = await fetch(url)
           const data = await res.json()
-          setResponse(data.message)
+          setResponse(data.result.parish)
         } catch (err) {
           setError(err)
         } finally {
@@ -251,7 +251,7 @@ const NetworkRequestComponent = ({ response, error, loading }: { response: strin
   loading ? <p>Loading...</p> : error ? <p>Error: {error.message}</p> : <p>Response: {response}</p>
 )
 
-const EnhancedNetworkRequestComponent = withNetworkRequest('https://api.example.com/data')(NetworkRequestComponent)
+const EnhancedNetworkRequestComponent = withNetworkRequest('https://api.postcodes.io/postcodes/ol145rt')(NetworkRequestComponent)
 
 export {
   EnhancedMousePositionComponent,

@@ -47,7 +47,7 @@
 
 - name: Copy constants file
   copy:
-    src: js/constants.ts
+    src: vite/constants.ts
     dest: "{{ dest }}/{{ appname }}/src/constants/index.ts"
 
 - name: Copy layouts file

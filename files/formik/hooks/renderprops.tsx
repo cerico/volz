@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 
 type MousePositionProps = {
   render: (props: { mousePosition: { x: number, y: number } }) => JSX.Element
@@ -188,8 +188,9 @@ const NetworkRequest = ({ render }) => {
     const fetchData = async () => {
       setLoading(true)
       try {
-        const res = await fetch('https://api.example.com/data')
+        const res = await fetch('https://api.postcodes.io/postcodes/ol145rt')
         const data = await res.json()
+        console.log(data)
         setResponse(data.message)
       } catch (err) {
         setError(err)

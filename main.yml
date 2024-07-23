@@ -7,9 +7,9 @@
   roles:
     - { role: before, tags: [always] }
     - { role: html, tags: [html] }
-    - { role: rails, tags: [rails] }
+    - { role: rails, tags: [rails, railsreact] }
     - { role: vite, tags: [vite, formik] }
     - { role: node, tags: [node] }
     - { role: astro, tags: [astro] }
-    - { role: formik, tags: [formik] }
+    - { role: formik, tags: [formik, railsreact] }
     - { role: git, tags: [always] }

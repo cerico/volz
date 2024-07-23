@@ -1,45 +1,66 @@
-- name: Create components directory
+- name: Set default react_root if not already set
+  set_fact:
+    react_root: "{{ react_root | default(dest + '/' + appname + '/src') }}"
+  when: react_root is not defined
+
+- name: Create src directories
   file:
-    path: "{{ dest }}/{{ appname }}/src/components"
+    path: "{{ react_root }}/{{ item }}"
     state: directory
     mode: "0755"
+  with_items:
+    - services
+    - components
+    - utils
+    - hooks
+    - routes
+    - redux
+    - redux/slices
+
+- name: Copy utils file
+  copy:
+    src: js/utils.ts
+    dest: "{{ react_root }}/utils/index.ts"
+
+- name: Copy services file
+  copy:
+    src: js/services.ts
+    dest: "{{ react_root }}/services/index.ts"
 
 - name: Copy Form
   copy:
     src: "{{ item }}"
-    dest: "{{ dest }}/{{ appname }}/src/components"
+    dest: "{{ react_root }}/components"
   with_items:
     - "formik/components/FormPage.tsx"
-    - "formik/components/FormPage.scss"
     - "formik/components/SwitchTheme.tsx"
-    - "formik/components/SwitchTheme.scss"
     - "formik/components/HocsPage.tsx"
     - "formik/components/CartPage.tsx"
 
 - name: Copy main and App
   copy:
     src: "{{ item }}"
-    dest: "{{ dest }}/{{ appname }}/src"
+    dest: "{{ react_root }}"
   with_items:
     - "formik/main.tsx"
     - "formik/App.tsx"
 
 - name: Create contexts directory
   file:
-    path: "{{ dest }}/{{ appname }}/src/contexts"
+    path: "{{ react_root }}/contexts"
     state: directory
     mode: "0755"
 
 - name: Copy main context
   copy:
     src: "formik/contexts/index.tsx"
-    dest: "{{ dest }}/{{ appname }}/src/contexts/index.tsx"
+    dest: "{{ react_root }}/contexts/index.tsx"
 
 
 - name: copy hooks examples
   copy:
     src: "{{ item }}"
-    dest: "{{ dest }}/{{ appname }}/src/hooks"
+    dest: "{{ react_root }}/hooks"
   with_items:
     - formik/hooks/hocs.tsx
     - formik/hooks/renderprops.tsx
@@ -47,16 +68,16 @@
 - name: Copy routes file
   copy:
     src: formik/routes/index.tsx
-    dest: "{{ dest }}/{{ appname }}/src/routes/index.tsx"
+    dest: "{{ react_root }}/routes/index.tsx"
 
 - name: copy redux store
   copy:
     src: formik/redux/store.ts
-    dest: "{{ dest }}/{{ appname }}/src/redux/store.ts"
+    dest: "{{ react_root }}/redux/store.ts"
 
 - name: copy redux slices
   copy:
     src: "{{ item }}"
-    dest: "{{ dest }}/{{ appname }}/src/redux/slices"
+    dest: "{{ react_root }}/redux/slices"
   with_items:
     - formik/redux/slices/cart.ts
