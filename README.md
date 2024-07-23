@@ -23,6 +23,7 @@ make vite
 make node
 make astro
 make formik
+make railsreact
 ```
 
 ## Instructions
@@ -54,6 +55,14 @@ Volz will create a barebones index.html, styles,css and script.js
 ### Node
 
 Volz will create a hello world app with postgres
+
+### Formik
+
+Volz will create a react application, with formik, hocs, react-router, redux, leaflet, and context api
+
+### RailsReact
+
+Volz will create a rails/react application, with formik hocs, react-router, redux, leaflet, and context api
 
 ### Git/GitHub
 

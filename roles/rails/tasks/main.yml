@@ -40,6 +40,10 @@
     - "react-leaflet"
     - "@stripe/stripe-js"
     - "@stripe/react-stripe-js"
+    - "react-redux"
+    - "@reduxjs/toolkit"
+    - "@emotion/react"
+    - "@emotion/styled"
   args:
     chdir: "{{ dest }}/{{ appname }}"
 
@@ -91,28 +95,28 @@
     chdir: "{{ dest }}/{{ appname }}"
 
 - name: stimulus controller
-  command: rails g stimulus react
+  command: rails g stimulus konjic
   args:
     chdir: "{{ dest }}/{{ appname }}"
 
 - name: fill out resulting stimulus controller
   copy:
     src:  rails/js/react_controller.js
-    dest: "{{ dest }}/{{ appname }}/app/javascript/controllers/react_controller.js"
+    dest: "{{ dest }}/{{ appname }}/app/javascript/controllers/konjic_controller.js"
 
 - name: Create Applications and counter directories
   file:
-    path: "{{ dest }}/{{ appname }}/app/javascript/applications/Counter"
+    path: "{{ dest }}/{{ appname }}/app/javascript/applications/Konjic"
     state: directory
     mode: "0755"
 
-- name: Copy counter component
+- name: Copy Counter component
   copy:
     src:  rails/js/counter.tsx
-    dest: "{{ dest }}/{{ appname }}/app/javascript/applications/Counter/App.tsx"
+    dest: "{{ dest }}/{{ appname }}/app/javascript/applications/Konjic/App.tsx"
 
 - name: create client controller
-  command: rails g controller client index show
+  command: rails g controller konjic index show
   args:
     chdir: "{{ dest }}/{{ appname }}"
 
@@ -127,10 +131,21 @@
     src: js/utils.ts
     dest: "{{ dest }}/{{ appname }}/app/javascript/utils/index.ts"
 
+- name: Create constants directory
+  file:
+    path: "{{ dest }}/{{ appname }}/app/javascript/applications/konjic/constants"
+    state: directory
+    mode: "0755"
+
+- name: Copy constants file
+  copy:
+    src: rails/js/constants.ts
+    dest: "{{ dest }}/{{ appname }}/app/javascript/applications/konjic/constants/index.ts"
+
 - name: Add react to html.erb pages
   copy:
     src: rails/react.html.erb
-    dest: "{{ dest }}/{{ appname }}/app/views/client/{{ item }}"
+    dest: "{{ dest }}/{{ appname }}/app/views/konjic/{{ item }}"
   with_items:
     - "index.html.erb"
     - "show.html.erb"
@@ -138,14 +153,14 @@
 - name: tidy up the created routes for index
   lineinfile:
     path: "{{ dest }}/{{ appname }}/config/routes.rb"
-    regexp: "get 'client/index'"
-    line: "  get 'client', to: 'client#index'"
+    regexp: "get 'konjic/index'"
+    line: "  get 'konjic', to: 'konjic#index'"
 
 - name: tidy up the created routes for show
   lineinfile:
     path:  "{{ dest }}/{{ appname }}/config/routes.rb"
-    regexp: "get 'client/show'"
-    line: "  get 'client/:show', to: 'client#show'"
+    regexp: "get 'konjic/show'"
+    line: "  get 'konjic/:show', to: 'konjic#show'"
 
 - name: active storage install
   command: rails active_storage:install
@@ -186,3 +201,7 @@
   command: rails db:seed
   args:
     chdir: "{{ dest }}/{{ appname }}"
+
+- name: Set react_root fact
+  set_fact:
+    react_root: "{{ dest }}/{{ appname }}/app/javascript/applications/Konjic"

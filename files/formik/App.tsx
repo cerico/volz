@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { AppRoutes, NavBar } from './routes'
 import SwitchTheme from './components/SwitchTheme'
-import './App.css'
+import { MainProvider } from "./contexts"
 
 function App() {
 
@@ -17,4 +17,12 @@ function App() {
   )
 }
 
-export default App
+function Root() {
+  return (
+    <MainProvider>
+      <App />
+    </MainProvider>
+  )
+}
+
+export default Root
