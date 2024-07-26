@@ -31,6 +31,17 @@
     - "graphql/server/types/post_type.rb"
     - "graphql/server/types/comment_type.rb"
     - "graphql/server/types/query_type.rb"
+    - 'graphql/server/types/mutation_type.rb'
+    - 'graphql/server/types/error_type.rb'
+
+- name: copy graphql mutations
+  copy:
+    src: "{{ item }}"
+    dest: "{{ dest }}/{{ appname }}/app/graphql/mutations"
+  with_items:
+    - "graphql/server/mutations/create_user.rb"
+    - "graphql/server/mutations/create_post.rb"
+    - "graphql/server/mutations/create_comment.rb"
 
 - name: run db migrate
   command: rails db:migrate
