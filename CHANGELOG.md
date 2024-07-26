@@ -1,3 +1,12 @@
+# [0.18.0](https://github.com/cerico/volz/compare/v0.17.0...v0.18.0) (2024-07-26)
+
+
+### Features
+
+* add graphql role ([90f9008](https://github.com/cerico/volz/commit/90f90085c89cbb11dffd7261fd56b0aec0fadbf1))
+
+
+
 # [0.17.0](https://github.com/cerico/volz/compare/v0.16.0...v0.17.0) (2024-07-23)
 
 
