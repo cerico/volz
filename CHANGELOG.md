@@ -1,3 +1,12 @@
+# [0.19.0](https://github.com/cerico/volz/compare/v0.18.0...v0.19.0) (2024-07-26)
+
+
+### Features
+
+* add mutations to graphql role ([6f35137](https://github.com/cerico/volz/commit/6f35137951f28a5b71738ba20aa74895b59c35d4))
+
+
+
 # [0.18.0](https://github.com/cerico/volz/compare/v0.17.0...v0.18.0) (2024-07-26)
 
 
