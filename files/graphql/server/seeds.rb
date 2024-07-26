@@ -19,11 +19,7 @@ User.create!(
 )
 
 Post.create!(
-  body: 'The name Todmorden is first attested in 1246, in the form Totmardene;[5] other pre-modern spellings include Tottemerden, Totmereden and Totmerden.[6] This is thought to originate in Old English as a personal name, Totta, combined with the Old English words mǣre ("border, boundary") and denu ("valley"). Thus the name once meant "Totta"s border-valley".[5][6] The valley in question is thought to have been the one running north-west from the town,[6] and the border the one between Lancashire and Yorkshire.[5]
-
-  Although fanciful and historically implausible, alternative etymologies circulate, such as the speculation that the name derives from two words for death: German Tod and French mort,[7] or that the name meant "marshy den of the fox", supposedly from tod, a word of uncertain origin meaning "fox" first attested around 1200,[8] moor (which in Old English meant "marsh"), and den (also attested in Old English to mean an animal"s lair).[citation needed]
-
- "Tod" is an informal name for Todmorden, often used in everyday conversation.[9][10] ',
+  body: 'The name Todmorden is first attested in 1246, in the form Totmardene;[5] other pre-modern spellings include Tottemerden, Totmereden and Totmerden.[6] This is thought to originate in Old English as a personal name, Totta, combined with the Old English words mǣre ("border, boundary") and denu ("valley"). Thus the name once meant "Totta"s border-valley".[5][6] The valley in question is thought to have been the one running north-west from the town,[6] and the border the one between Lancashire and Yorkshire.',
   user_id: User.first.id
 )
 

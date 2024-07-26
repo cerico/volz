@@ -11,6 +11,7 @@ class Types::UserType < Types::BaseObject
   field :comments, [Types::CommentType], null: false
   field :address, String, null: false
   field :full_address, String, null: false
+  field :errors, [Types::ErrorType], null: true
 
   def posts
     object.posts
@@ -23,4 +24,19 @@ class Types::UserType < Types::BaseObject
   def address
     "#{object.number} #{object.street}, #{object.postcode} #{object.city}, #{object.country}"
   end
+
+  def errors
+    object.errors.map { |e| { field_name: e.attribute, errors: object.errors[e.attribute] } }
+  end
+end
+
+class Types::UserInputType < Types::BaseInputObject
+  graphql_name "UserInputType"
+  argument :first_name, String, required: true
+  argument :last_name, String, required: true
+  argument :number, String, required: true
+  argument :street, String, required: true
+  argument :postcode, String, required: true
+  argument :city, String, required: true
+  argument :country, String, required: true
 end
