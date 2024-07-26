@@ -26,3 +26,5 @@ formik:
 	$(ANSIBLE_PLAYBOOK) main.yml -i hosts --tags "formik" -e curdir=$(CURDIR)
 railsreact:
 	$(ANSIBLE_PLAYBOOK) main.yml -i hosts --tags "railsreact" -e curdir=$(CURDIR)
+graphql:
+	$(ANSIBLE_PLAYBOOK) main.yml -i hosts --tags "graphql" -e curdir=$(CURDIR)
