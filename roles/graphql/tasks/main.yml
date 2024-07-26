@@ -1,0 +1,48 @@
+- name: create user model
+  command: rails g model User first_name:string last_name:string street:string number:string postcode:string city:string country:string
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: create post model
+  command: rails g model Post user_id:integer body:text
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: create comment model
+  command: rails g model Comment post_id:integer body:text user_id:integer
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: copy models
+  copy:
+    src:  "{{ item }}"
+    dest: "{{ dest }}/{{ appname }}/app/models"
+  with_items:
+    - "graphql/server/models/user.rb"
+    - "graphql/server/models/post.rb"
+    - "graphql/server/models/comment.rb"
+
+- name: copy graphql types
+  copy:
+    src: "{{ item }}"
+    dest: "{{ dest }}/{{ appname }}/app/graphql/types"
+  with_items:
+    - "graphql/server/types/user_type.rb"
+    - "graphql/server/types/post_type.rb"
+    - "graphql/server/types/comment_type.rb"
+    - "graphql/server/types/query_type.rb"
+
+- name: run db migrate
+  command: rails db:migrate
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: copy db seed
+  copy:
+    src: graphql/server/seeds.rb
+    dest: "{{ dest }}/{{ appname }}/db"
+
+- name: run db seed
+  command: rails db:seed
+  args:
+    chdir: "{{ dest }}/{{ appname }}"

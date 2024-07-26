@@ -74,6 +74,7 @@
     - "carrierwave"
     - "stripe"
     - "geocoder"
+    - "graphql"
   args:
     chdir: "{{ dest }}/{{ appname }}"
 
@@ -103,6 +104,8 @@
   copy:
     src:  rails/js/react_controller.js
     dest: "{{ dest }}/{{ appname }}/app/javascript/controllers/konjic_controller.js"
+
+
 
 - name: Create Applications and counter directories
   file:
@@ -164,6 +167,16 @@
 
 - name: active storage install
   command: rails active_storage:install
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: graphql install
+  command: rails g graphql:install
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: Run bundle install again after graphql added
+  command: bundle install
   args:
     chdir: "{{ dest }}/{{ appname }}"
 

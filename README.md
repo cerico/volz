@@ -24,6 +24,7 @@ make node
 make astro
 make formik
 make railsreact
+make graphql
 ```
 
 ## Instructions
@@ -36,6 +37,9 @@ volz () {
   make -f $volzloc/Makefile $1 -C $volzloc CURDIR=$(pwd)
   cd $(ls -t |head -1)
 }
+
+volz rails
+volz astro
 ```
 
 Where $volzloc is the location of the cloned repo. Then the commmands will be run with volz instead of make, eg `volz rails` or `volz html`. If run from anywhere other than the repo location it will output into a newly created directory but without the dist. If run from the repo location the newly created directory will be output into the dist folder instead.
@@ -63,6 +67,10 @@ Volz will create a react application, with formik, hocs, react-router, redux, le
 ### RailsReact
 
 Volz will create a rails/react application, with formik hocs, react-router, redux, leaflet, and context api
+
+### RailsReact
+
+Volz will extend the rails/react application with GraphQL
 
 ### Git/GitHub
 
