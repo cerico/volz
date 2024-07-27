@@ -1,3 +1,12 @@
+# [0.20.0](https://github.com/cerico/volz/compare/v0.19.0...v0.20.0) (2024-07-27)
+
+
+### Features
+
+* add authentication to graphql role ([6e3daea](https://github.com/cerico/volz/commit/6e3daeaff2b76171b29a1b32a4f93fca55fa17e9))
+
+
+
 # [0.19.0](https://github.com/cerico/volz/compare/v0.18.0...v0.19.0) (2024-07-26)
 
 
