@@ -170,16 +170,6 @@
   args:
     chdir: "{{ dest }}/{{ appname }}"
 
-- name: graphql install
-  command: rails g graphql:install
-  args:
-    chdir: "{{ dest }}/{{ appname }}"
-
-- name: Run bundle install again after graphql added
-  command: bundle install
-  args:
-    chdir: "{{ dest }}/{{ appname }}"
-
 - name: Move Dockerfile
   command: mv "{{ dest }}/{{ appname }}"/Dockerfile "{{ dest }}/{{ appname }}"/Dockerfile.orig
 

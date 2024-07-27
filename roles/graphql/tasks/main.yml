@@ -1,5 +1,37 @@
+- name: graphql install
+  command: rails g graphql:install
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: Run bundle install again after graphql added
+  command: bundle install
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: Add text above the line 'context = {'
+  lineinfile:
+    path: "{{ dest }}/{{ appname }}/app/controllers/graphql_controller.rb"
+    insertbefore: 'context = {'
+    line: |
+          session = Session.find_by(token: request.headers['Authorization'])
+
+- name: Add text below the line 'context = {'
+  lineinfile:
+    path: "{{ dest }}/{{ appname }}/app/controllers/graphql_controller.rb"
+    insertafter: 'context = {'
+    line: |
+      time: Time.zone.now,
+      current_user: session&.user,
+      session_id: session&.id
+
+
 - name: create user model
-  command: rails g model User first_name:string last_name:string street:string number:string postcode:string city:string country:string
+  command: rails g model User first_name:string last_name:string street:string number:string postcode:string city:string country:string email:string password_digest:string is_superadmin:boolean
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: create session model
+  command: rails g model Session user_id:integer token:string
   args:
     chdir: "{{ dest }}/{{ appname }}"
 
@@ -21,6 +53,7 @@
     - "graphql/server/models/user.rb"
     - "graphql/server/models/post.rb"
     - "graphql/server/models/comment.rb"
+    - "graphql/server/models/session.rb"
 
 - name: copy graphql types
   copy:

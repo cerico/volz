@@ -54,5 +54,31 @@ module Types
     def comment(id:)
       Comment.find(id)
     end
+
+    field :login, String, null: true do
+      description "Login a user"
+      argument :email, String, required: true
+      argument :password, String, required: true
+    end
+
+    def login(email:, password:)
+      user = User.find_by(email: email)
+      return unless user
+      user.authenticate(password)
+
+      user.sessions.create.token
+    end
+
+    field :logout, Boolean, null: true do
+      description "Logout a user"
+    end
+
+    def logout()
+      session = Session.find_by(token: context[:session_id])
+      return unless session
+
+      session.destroy_all
+      true
+    end
   end
 end
