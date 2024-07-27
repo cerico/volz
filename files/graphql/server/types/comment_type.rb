@@ -16,6 +16,11 @@ class Types::CommentType < Types::BaseObject
   def errors
     object.errors.map { |e| { field_name: e.attribute, errors: object.errors[e.attribute] } }
   end
+
+  def self.authorized?(object, context)
+    true
+    # object.user == context[:current_user]
+  end
 end
 
 class Types::CommentInputType < Types::BaseInputObject

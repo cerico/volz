@@ -15,7 +15,10 @@ User.create!(
   street: 'Wolverton Road',
   postcode: 'ol14 5gh',
   city: 'Todmorden',
-  country: 'UK'
+  country: 'UK',
+  email: 'kerry@ol14.cc',
+  password: 'qeogihqeioughqet5135138205y8013  thfveq',
+  password_confirmation: 'qeogihqeioughqet5135138205y8013  thfveq'
 )
 
 Post.create!(

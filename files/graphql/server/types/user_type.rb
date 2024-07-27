@@ -1,5 +1,7 @@
 class Types::UserType < Types::BaseObject
   field :id, ID, null: false
+  field :email, String, null: false
+  field :is_superadmin, Boolean, null: false
   field :first_name, String, null: false
   field :last_name, String, null: false
   field :number, String, null: false
@@ -28,6 +30,10 @@ class Types::UserType < Types::BaseObject
   def errors
     object.errors.map { |e| { field_name: e.attribute, errors: object.errors[e.attribute] } }
   end
+
+  # def self.visible?(context)
+  #   context[:current_user] || context[:time].friday?
+  # end
 end
 
 class Types::UserInputType < Types::BaseInputObject
@@ -39,4 +45,6 @@ class Types::UserInputType < Types::BaseInputObject
   argument :postcode, String, required: true
   argument :city, String, required: true
   argument :country, String, required: true
+  argument :email, String, required: true
+  argument :password, String, required: true
 end
