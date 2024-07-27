@@ -1,0 +1,7 @@
+- name: Scaffold Application
+  hosts: localhost
+  vars:
+    appname: "."
+  roles:
+    - { role: before, tags: [always] }
+    - { role: graphql, tags: [graphql] }
