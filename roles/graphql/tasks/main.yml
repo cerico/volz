@@ -1,23 +1,37 @@
+- name: Set base dir
+  set_fact:
+    base: "{{ dest }}/{{ appname }}"
+
+- name: Check if Gemfile exists
+  stat:
+    path: "{{ base }}/Gemfile"
+  register: gemfile_stat
+
+- name: Fail if Gemfile is missing
+  fail:
+    msg: "Gemfile is missing in {{ base }}"
+  when: not gemfile_stat.stat.exists
+
 - name: graphql install
   command: rails g graphql:install
   args:
-    chdir: "{{ dest }}/{{ appname }}"
+    chdir: "{{ base }}"
 
 - name: Run bundle install again after graphql added
   command: bundle install
   args:
-    chdir: "{{ dest }}/{{ appname }}"
+    chdir: "{{ base }}"
 
 - name: Add text above the line 'context = {'
   lineinfile:
-    path: "{{ dest }}/{{ appname }}/app/controllers/graphql_controller.rb"
+    path: "{{ base }}/app/controllers/graphql_controller.rb"
     insertbefore: 'context = {'
     line: |
           session = Session.find_by(token: request.headers['Authorization'])
 
 - name: Add text below the line 'context = {'
   lineinfile:
-    path: "{{ dest }}/{{ appname }}/app/controllers/graphql_controller.rb"
+    path: "{{ base }}/app/controllers/graphql_controller.rb"
     insertafter: 'context = {'
     line: |
       time: Time.zone.now,
@@ -28,27 +42,27 @@
 - name: create user model
   command: rails g model User first_name:string last_name:string street:string number:string postcode:string city:string country:string email:string password_digest:string is_superadmin:boolean
   args:
-    chdir: "{{ dest }}/{{ appname }}"
+    chdir: "{{ base }}"
 
 - name: create session model
   command: rails g model Session user_id:integer token:string
   args:
-    chdir: "{{ dest }}/{{ appname }}"
+    chdir: "{{ base }}"
 
 - name: create post model
   command: rails g model Post user_id:integer body:text
   args:
-    chdir: "{{ dest }}/{{ appname }}"
+    chdir: "{{ base }}"
 
 - name: create comment model
   command: rails g model Comment post_id:integer body:text user_id:integer
   args:
-    chdir: "{{ dest }}/{{ appname }}"
+    chdir: "{{ base }}"
 
 - name: copy models
   copy:
     src:  "{{ item }}"
-    dest: "{{ dest }}/{{ appname }}/app/models"
+    dest: "{{ base }}/app/models"
   with_items:
     - "graphql/server/models/user.rb"
     - "graphql/server/models/post.rb"
@@ -58,7 +72,7 @@
 - name: copy graphql types
   copy:
     src: "{{ item }}"
-    dest: "{{ dest }}/{{ appname }}/app/graphql/types"
+    dest: "{{ base }}/app/graphql/types"
   with_items:
     - "graphql/server/types/user_type.rb"
     - "graphql/server/types/post_type.rb"
@@ -70,7 +84,7 @@
 - name: copy graphql mutations
   copy:
     src: "{{ item }}"
-    dest: "{{ dest }}/{{ appname }}/app/graphql/mutations"
+    dest: "{{ base }}/app/graphql/mutations"
   with_items:
     - "graphql/server/mutations/create_user.rb"
     - "graphql/server/mutations/create_post.rb"
@@ -79,14 +93,14 @@
 - name: run db migrate
   command: rails db:migrate
   args:
-    chdir: "{{ dest }}/{{ appname }}"
+    chdir: "{{ base }}"
 
 - name: copy db seed
   copy:
     src: graphql/server/seeds.rb
-    dest: "{{ dest }}/{{ appname }}/db"
+    dest: "{{ base }}/db"
 
 - name: run db seed
   command: rails db:seed
   args:
-    chdir: "{{ dest }}/{{ appname }}"
+    chdir: "{{ base }}"
