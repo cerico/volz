@@ -1,3 +1,17 @@
+# [0.21.0](https://github.com/cerico/volz/compare/v0.20.0...v0.21.0) (2024-07-28)
+
+
+### Bug Fixes
+
+* set a base directory of dest/appname in graphql role ([c9a1276](https://github.com/cerico/volz/commit/c9a12766aa7ca82bcf3678dda978a22310491dbf))
+
+
+### Features
+
+* create an add playbook with graphql role ([2e7a851](https://github.com/cerico/volz/commit/2e7a851ffba444c9a520e5e54bb11118c2473841))
+
+
+
 # [0.20.0](https://github.com/cerico/volz/compare/v0.19.0...v0.20.0) (2024-07-27)
 
 
