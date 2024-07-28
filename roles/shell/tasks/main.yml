@@ -1,0 +1,39 @@
+---
+- name: Check for potential shell config file locations to put function
+  stat:
+    path: "{{ ansible_env.HOME }}/{{ item }}"
+  register: shell_config_files
+  loop:
+    - .zsh/volz.zsh
+    - .zshrc
+    - .bashrc
+
+- name: Set shell config file
+  set_fact:
+    shell_config_file: "none"
+
+- name: Determine shell config file
+  set_fact:
+    shell_config_file: "{{ item.stat.path }}"
+  when: item.stat.exists and shell_config_file == "none"
+  loop: "{{ shell_config_files.results }}"
+
+- name: Fail if no shell config file exists
+  fail:
+    msg: "None of volz.zsh, .zshrc, or .bashrc exists. Aborting."
+  when: shell_config_file == "none"
+
+- name: Get current directory
+  set_fact:
+    current_dir: "{{ lookup('pipe', 'pwd') }}"
+
+- name: Add volz function to shell config file
+  lineinfile:
+    path: "{{ shell_config_file }}"
+    line: |
+      volz () {
+        volzloc={{ current_dir }}
+        make -f $volzloc/Makefile $1 -C $volzloc CURDIR=$(pwd)
+      }
+    create: yes
+    state: present

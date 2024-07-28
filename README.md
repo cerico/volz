@@ -29,20 +29,25 @@ make graphql
 
 ## Instructions
 
-Volz is an application scaffolder that scaffolds rails/react applications, vite/react applications, and html/css/js applications. By default it will output the application in the dist directory of this repo. However it can be run from anywhere in your file system by setting up the following zsh or bash function
+Volz is an application scaffolder that scaffolds rails/react applications, vite/react applications, and html/css/js applications. By default it will output the application in the dist directory of this repo.
+
+However it can be run from anywhere in your file system by adding it to your `.bashrc` or `.zshrcz with
+
+```bash
+make shell
+```
+
+This will add the following function to your shell
+
 
 ```bash
 volz () {
   local volzloc=$HOME/live/volz
   make -f $volzloc/Makefile $1 -C $volzloc CURDIR=$(pwd)
-  cd $(ls -t |head -1)
 }
-
-volz rails
-volz astro
 ```
 
-Where $volzloc is the location of the cloned repo. Then the commmands will be run with volz instead of make, eg `volz rails` or `volz html`. If run from anywhere other than the repo location it will output into a newly created directory but without the dist. If run from the repo location the newly created directory will be output into the dist folder instead.
+And now the volz scaffolder can be ruin from anywhere insteade of into the dist directory of the repo
 
 ### Rails
 
@@ -68,15 +73,13 @@ Volz will create a react application, with formik, hocs, react-router, redux, le
 
 Volz will create a rails/react application, with formik hocs, react-router, redux, leaflet, and context api
 
-### RailsReact
+### GraphQL
 
 Volz will extend the rails/react application with GraphQL
 
 ### Git/GitHub
 
 Volz sets up a test workflow and release workflow with conventional changelog action included. For Rails applications a dokku workflow is also created
-
-
 
 ## Built With
 
