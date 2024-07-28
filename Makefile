@@ -30,3 +30,5 @@ graphql:
 	$(ANSIBLE_PLAYBOOK) main.yml -i hosts --tags "graphql" -e curdir=$(CURDIR)
 addgraphql:
 	$(ANSIBLE_PLAYBOOK) add.yml -i hosts --tags "graphql" -e curdir=$(CURDIR)
+shell:
+	$(ANSIBLE_PLAYBOOK) shell.yml -i hosts
