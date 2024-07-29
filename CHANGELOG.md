@@ -1,3 +1,12 @@
+# [0.22.0](https://github.com/cerico/volz/compare/v0.21.0...v0.22.0) (2024-07-29)
+
+
+### Features
+
+* add alias to shell with playbook ([cc6eb3e](https://github.com/cerico/volz/commit/cc6eb3eaf8f900f9ade9391fb493281b59fb0f18))
+
+
+
 # [0.21.0](https://github.com/cerico/volz/compare/v0.20.0...v0.21.0) (2024-07-28)
 
 
