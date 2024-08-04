@@ -44,6 +44,7 @@
     - "@reduxjs/toolkit"
     - "@emotion/react"
     - "@emotion/styled"
+    - "dotenv"
   args:
     chdir: "{{ dest }}/{{ appname }}"
 
@@ -91,9 +92,28 @@
     chdir: "{{ dest }}/{{ appname }}"
 
 - name: Ensure build script includes --loader:.js=jsx
-  command: npx json -I -f package.json -e 'this.scripts.build="esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets --loader:.js=jsx"'
+  command: npx json -I -f package.json -e 'this.scripts.build="node esbuild.config.js"'
   args:
     chdir: "{{ dest }}/{{ appname }}"
+
+- name: Ensure build script includes --loader:.js=jsx
+  command: npx json -I -f package.json -e 'this.scripts.buildev="node esbuild.config.dev.js"'
+  args:
+    chdir: "{{ dest }}/{{ appname }}"
+
+- name: copy esbuild config files
+  copy:
+    src: "{{ item }}"
+    dest: "{{ dest }}/{{ appname }}"
+  with_items:
+    - rails/esbuild/esbuild.config.js
+    - rails/esbuild/esbuild.config.dev.js
+    - rails/esbuild/esbuild.config.base.js
+
+- name: copy env
+  copy:
+    src: rails/esbuild/env
+    dest: "{{ dest }}/{{ appname }}/.env"
 
 - name: stimulus controller
   command: rails g stimulus konjic
