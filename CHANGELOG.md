@@ -1,3 +1,12 @@
+# [0.23.0](https://github.com/cerico/volz/compare/v0.22.0...v0.23.0) (2024-08-04)
+
+
+### Features
+
+* esbuild files for rails role ([bd8b38a](https://github.com/cerico/volz/commit/bd8b38af570267d134b1555cd721fbd963bcc697))
+
+
+
 # [0.22.0](https://github.com/cerico/volz/compare/v0.21.0...v0.22.0) (2024-07-29)
 
 
