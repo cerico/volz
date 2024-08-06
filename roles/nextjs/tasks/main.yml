@@ -1,0 +1,6 @@
+
+- name: Create nextjs project
+  command: npx create-next-app@latest "{{ appname }}" --ts --eslint --tailwind --src-dir --app --import-alias "@/*" 
+  args:
+    chdir: "{{ dest }}"
+
