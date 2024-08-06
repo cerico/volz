@@ -1,3 +1,12 @@
+# [0.24.0](https://github.com/cerico/volz/compare/v0.23.0...v0.24.0) (2024-08-06)
+
+
+### Features
+
+* add nextjs role ([416d325](https://github.com/cerico/volz/commit/416d3255b8283354fc90dad347718002e091a27a))
+
+
+
 # [0.23.0](https://github.com/cerico/volz/compare/v0.22.0...v0.23.0) (2024-08-04)
 
 
