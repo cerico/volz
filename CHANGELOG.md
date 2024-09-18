@@ -1,3 +1,12 @@
+# [0.25.0](https://github.com/cerico/volz/compare/v0.24.0...v0.25.0) (2024-09-18)
+
+
+### Features
+
+* tailwind added to html and astro ([e356d8c](https://github.com/cerico/volz/commit/e356d8c620eadfa1e3a71493b0fccd2ed1594ba7))
+
+
+
 # [0.24.0](https://github.com/cerico/volz/compare/v0.23.0...v0.24.0) (2024-08-06)
 
 
